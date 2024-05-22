@@ -1,0 +1,53 @@
+{
+  "name": "ts-comment-case",
+  "version": "0.0.1",
+  "description": "a plugin to change comment case",
+  "main": "./dist/cjs/index.js",
+  "bin": {
+    "tscc": "./bin/tscc.js"
+  },
+  "scripts": {
+    "dev": "father dev",
+    "build": "father build",
+    "build:deps": "father prebundle",
+    "lint": "eslint \"{src,test,packages}/**/*.{js,jsx,ts,tsx}\"",
+    "prepare": "husky",
+    "prepublishOnly": "father doctor && npm run build"
+  },
+  "keywords": [],
+  "authors": [
+    "moecasts <moecasts.caster@gmail.com>"
+  ],
+  "license": "MIT",
+  "files": [
+    "dist",
+    "compiled"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "neovim": "^5.1.0",
+    "tsutils": "^3.21.0",
+    "typescript": "~5.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "father": "^4.4.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.4",
+    "prettier": "^3.0.3",
+    "tslib": "^2.6.2"
+  }
+}
