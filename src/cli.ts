@@ -1,6 +1,6 @@
 import { Command, CommanderError, Option } from 'commander';
 
-import { CommentCase, transform } from '.';
+import { CommentCase, transform } from './transform';
 
 export const PLUGIN_NAME = 'tscc';
 
