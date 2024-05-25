@@ -1,5 +1,7 @@
 import { defineConfig } from 'father';
 
 export default defineConfig({
-  cjs: {},
+  cjs: {
+    ignores: ['**/__materials__/**/*'],
+  },
 });
