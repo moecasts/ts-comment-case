@@ -1,0 +1,51 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`manipulate > moveTrailingCommentToLeading 1`] = `
+"// @ts-nocheck
+// This is a comment of var1
+export const var1 = 1;
+
+// This is a comment of var2
+export const var2 = 2;
+
+// this is a comment of Type
+export type Type = string;
+
+// This is a comment before Interface
+export interface Interface {
+  // This is a comment after Interface
+
+  // this is a comment of type
+  type: Type;
+}
+
+// This is a comment of function test
+export function test() {
+  // This is a comment before Interface
+  interface InnerInterface {
+    // This is a comment after Interface
+
+    // this is a comment of type
+    type: Type;
+  }
+
+  // this is a comment of InnerType
+  type InnerType = string;
+
+  // this is a comment of InnerType
+  true && false;
+
+  // eslint-disable-next-line
+  // this is a comment of InnerType
+  const a,
+    b = 1 && false;
+
+  type InnerTypeA = string;
+  // this is a comment of InnerType
+  type InnerTypeB = string;
+
+  // This is a comment of console
+  console.log('test');
+}
+"
+`;

@@ -1,0 +1,128 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`transform > transform comment into JSDoc style 1`] = `
+"/**
+ * single line comment
+ */"
+`;
+
+exports[`transform > transform comment into JSDoc style 2`] = `"/** single line comment */"`;
+
+exports[`transform > transform comment into JSDoc style 3`] = `
+"/**
+ * This is an interface called Test.
+ */
+/**
+ * JSDoc comment 1
+ * @description this is a JSDoc comment description
+ */
+/**
+ * This is an interface called Test.
+ * @description this is a description.
+ * "double quote"
+ */
+export interface Test {
+  /**
+   * this is an interface prop called name.
+   */
+  name: string;
+
+  /**
+   * this is an interface prop called age.
+   * @description this is a description.
+   */
+  age: number;
+}
+
+/**
+ * JSDoc comment 1
+ * @description this is a JSDoc comment description
+ */
+/**
+ * JSDoc comment 2
+ * @description this is a JSDoc comment description
+ */
+export const jsdoc = () => {
+  /**
+   * Single line comment
+   */
+  const singleLineComment = 'singleLineComment'; // inline comment
+
+  /*
+   * Block line comment
+   */
+  const blockLineComment = 'blockLineComment'; // inline comment
+
+  /**
+   * inner JSDoc comment
+   *
+   * @description this is a JSDoc comment description
+   */
+  const innerJSDocComment = 'innerJSDocComment'; // inline comment
+
+  /**
+   * Multi line comment
+   * Multi line comment
+   */
+  console.log({
+    singleLineComment,
+    blockLineComment,
+    innerJSDocComment,
+  });
+};
+"
+`;
+
+exports[`transform > transform comment into single line style 1`] = `
+"// This is an interface called Test.
+// JSDoc comment 1
+// @description this is a JSDoc comment description
+// This is an interface called Test.
+// @description this is a description.
+// "double quote"
+export interface Test {
+  // this is an interface prop called name.
+  name: string;
+
+  // this is an interface prop called age.
+  // @description this is a description.
+  age: number;
+}
+
+// JSDoc comment 1
+// @description this is a JSDoc comment description
+// JSDoc comment 2
+// @description this is a JSDoc comment description
+export const jsdoc = () => {
+  // Single line comment
+  const singleLineComment = 'singleLineComment'; // inline comment
+
+  // Block line comment
+  const blockLineComment = 'blockLineComment'; // inline comment
+
+  // inner JSDoc comment
+  // @description this is a JSDoc comment description
+  const innerJSDocComment = 'innerJSDocComment'; // inline comment
+
+  // Multi line comment
+  // Multi line comment
+  console.log({
+    singleLineComment,
+    blockLineComment,
+    innerJSDocComment,
+  });
+};
+"
+`;
+
+exports[`transform > transformCommentIntoSingleLineStyle 1`] = `"// multi line comment A  b"`;
+
+exports[`transform > transformCommentIntoSingleLineStyle 2`] = `"// single line comment"`;
+
+exports[`transform > transformCommentIntoSingleLineStyle 3`] = `"// multi line comment A  b"`;
+
+exports[`transform > transformCommentIntoSingleLineStyle 4`] = `
+"// multi line comment A
+// multi line comment B
+//      multi line comment C"
+`;

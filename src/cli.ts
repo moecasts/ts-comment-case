@@ -1,8 +1,20 @@
 import { Command, CommanderError, Option } from 'commander';
 
-import { CommentCase, transform } from '.';
+import { moveTrailingCommentToLeading } from './manipulate';
+import { CommentCase, transform } from './transform';
+
+export enum Action {
+  Transform = 'transform',
+  Move = 'move',
+  MoveAndTransform = 'move_and_transform',
+}
 
 export const PLUGIN_NAME = 'tscc';
+
+export type CommandOptions = {
+  case: CommentCase;
+  action: Action;
+};
 
 export const run = () => {
   const cli = new Command(PLUGIN_NAME);
@@ -10,6 +22,14 @@ export const run = () => {
     .name(PLUGIN_NAME)
     .exitOverride()
     .argument('<content>', 'input code')
+    .addOption(
+      new Option(
+        '-a, --action [action]',
+        `action (${Object.values(Action).join(', ')})`,
+      )
+        .choices(Object.values(Action))
+        .default(Action.Transform),
+    )
     .addOption(
       new Option(
         '-c, --case [case]',
@@ -22,13 +42,30 @@ export const run = () => {
   try {
     cli.parse(process.argv);
     const [content] = cli.args;
-    const { case: commentCase } = cli.opts();
 
-    let output = '';
+    const getOutput = (content: string, options: CommandOptions): string => {
+      const { case: commentCase, action } = options;
 
-    output = transform(content, {
-      commentCase,
-    });
+      if (action === Action.Transform) {
+        return transform(content, {
+          commentCase,
+        });
+      }
+
+      if (action === Action.Move) {
+        return moveTrailingCommentToLeading(content);
+      }
+
+      if (action === Action.MoveAndTransform) {
+        return transform(moveTrailingCommentToLeading(content), {
+          commentCase,
+        });
+      }
+
+      return content;
+    };
+
+    const output = getOutput(content, cli.opts());
 
     process.stdout.write(output);
   } catch (err) {
