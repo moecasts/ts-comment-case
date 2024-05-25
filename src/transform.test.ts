@@ -39,7 +39,7 @@ describe('transform', () => {
     });
   });
 
-  test('transform comment into JSDoc style', () => {
+  test('transformCommentIntoJSDocStyle', () => {
     const comments = ['// single line comment', '/** single line comment */'];
 
     comments.forEach((comment) => {

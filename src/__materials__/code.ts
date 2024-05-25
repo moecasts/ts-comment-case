@@ -1,3 +1,8 @@
+/* eslint-disable prettier/prettier */
+  // this is a single comment 1.
+  // this is a single comment 2.
+  export const headComment = 'headComment'; // inline head comment
+
 /**
  * This is an interface called Test.
  */

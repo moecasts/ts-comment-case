@@ -1,15 +1,14 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`transform > transform comment into JSDoc style 1`] = `
-"/**
- * single line comment
- */"
-`;
+"/* eslint-disable prettier/prettier */
+  /**
+   * this is a single comment 1.
+   * this is a single comment 2.
+   */
+  export const headComment = 'headComment'; // inline head comment
 
-exports[`transform > transform comment into JSDoc style 2`] = `"/** single line comment */"`;
-
-exports[`transform > transform comment into JSDoc style 3`] = `
-"/**
+/**
  * This is an interface called Test.
  */
 /**
@@ -74,7 +73,12 @@ export const jsdoc = () => {
 `;
 
 exports[`transform > transform comment into single line style 1`] = `
-"// This is an interface called Test.
+"// eslint-disable prettier/prettier
+  // this is a single comment 1.
+  // this is a single comment 2.
+  export const headComment = 'headComment'; // inline head comment
+
+// This is an interface called Test.
 // JSDoc comment 1
 // @description this is a JSDoc comment description
 // This is an interface called Test.
@@ -114,6 +118,14 @@ export const jsdoc = () => {
 };
 "
 `;
+
+exports[`transform > transformCommentIntoJSDocStyle 1`] = `
+"/**
+ * single line comment
+ */"
+`;
+
+exports[`transform > transformCommentIntoJSDocStyle 2`] = `"/** single line comment */"`;
 
 exports[`transform > transformCommentIntoSingleLineStyle 1`] = `"// multi line comment A  b"`;
 

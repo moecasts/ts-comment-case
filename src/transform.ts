@@ -84,6 +84,9 @@ const defaultTransformOptions = {
   commentCase: CommentCase.JSDoc,
 } satisfies TransformOptions;
 
+/**
+ * transform code comments
+ */
 export const transform = (content: string, options: TransformOptions = {}) => {
   const { commentCase } = {
     ...defaultTransformOptions,
@@ -150,12 +153,15 @@ export const transform = (content: string, options: TransformOptions = {}) => {
       }
 
       if (commentCase === CommentCase.JSDoc) {
-        const prefix = fullText.slice(
-          fullText.slice(0, commentRange.pos).lastIndexOf('\n'),
-          commentRange.pos,
-        );
+        const lastBreakLineIndex = fullText
+          .slice(0, commentRange.pos)
+          .lastIndexOf('\n');
 
-        const isInlineComment = prefix && !/^\n?\s+$/.test(prefix);
+        const startIndex = lastBreakLineIndex > -1 ? lastBreakLineIndex : 0;
+
+        const prefix = fullText.slice(startIndex, commentRange.pos);
+
+        const isInlineComment = Boolean(prefix && !/^\n?\s+$/.test(prefix));
 
         if (isInlineComment) {
           return acc;
@@ -164,6 +170,7 @@ export const transform = (content: string, options: TransformOptions = {}) => {
         const indent = /\s*/.test(prefix)
           ? prefix.match(/\n?([ \t]*)/)?.[1]
           : '';
+
         replacedComments = transformCommentIntoJSDocStyle(comments, indent);
       }
 
